@@ -2,7 +2,8 @@ import express from "express";
 import passport from "passport";
 import session from "express-session";
 import { Strategy as LocalStrategy } from "passport-local";
-
+import Knex from 'knex';
+import knexConfig from './database/knexfile';
 
 // Replace the below with your actual user model and authentication logic,once implemented
 const fakeUser = {
@@ -35,6 +36,7 @@ const fakeUser = {
 
 const app = express();
 const port = 3000;
+const knex = Knex(knexConfig.development);
 
 // Add the express-session middleware
 app.use(session({
